@@ -1,7 +1,10 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 var solver = require('./Solver');
+
+app.use(cors());
 
 app.get('/solve/:boggleString' , function(req, res, next){
 

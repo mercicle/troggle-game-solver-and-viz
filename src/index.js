@@ -9,7 +9,7 @@ import logo from './rstudio-logo.png';
 import d3 from 'd3';
 import _ from 'underscore';
 
-const matrix_rank = 2;
+const matrix_rank = 4;
 const total_letters = matrix_rank * matrix_rank;
 const space = _.range(matrix_rank);
 
@@ -59,6 +59,7 @@ class Board extends React.Component {
 
     this.renderSquare = this.renderSquare.bind(this);
     this.getData = this.getData.bind(this);
+    this.solveAndDisplay = this.solveAndDisplay.bind(this);
 
   }
 
@@ -77,12 +78,38 @@ class Board extends React.Component {
     );
   }
 
+  solveAndDisplay(){
+  	// test fetch and display below board
+  	const boggleString = this.state.squares.join('')
+  	const this_query = 'http://localhost:3001/solve/' + boggleString;
+	this.status_element = d3.select(ReactDOM.findDOMNode(this.refs.status))
+
+	fetch(this_query)
+	.then(response => response.json())
+	.then(words => {
+
+ 		var s = this.status_element.selectAll('li').data(words)
+ 		
+ 		s.enter().append('li').text(function(d){ return d })
+ 		s.exit().remove();
+	})
+
+  }
+  
+  componentDidMount(){
+  	this.solveAndDisplay()
+  }
+
+  componentDidUpdate(){
+ 	this.solveAndDisplay()
+  }
+
   render() {
 
-    const status = 'Unsolved';
+ 
     return (
       <div className="boardContainer">
-        <div className="status">{status}</div>
+        <br/>
         { /* Iteration through rows and append Square column elements 
              dynamically based on global parms */ 
         }
@@ -99,7 +126,8 @@ class Board extends React.Component {
         		    </div>
         	 
          }, this)}
-        
+        <br/>
+        <div className="status" ref = 'status'> </div>
       </div>
     );
  
