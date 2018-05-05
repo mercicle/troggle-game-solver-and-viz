@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './App.css';
 import logo from './rstudio-logo.png';
+import plotTree from './radial-tree';
 
 import d3 from 'd3';
 import _ from 'underscore';
@@ -95,9 +96,10 @@ class Board extends React.Component {
 	})
 
   }
-  
+
   componentDidMount(){
   	this.solveAndDisplay()
+  	plotTree()
   }
 
   componentDidUpdate(){
@@ -128,6 +130,8 @@ class Board extends React.Component {
          }, this)}
         <br/>
         <div className="status" ref = 'status'> </div>
+        <div id="radialTree"> 
+        </div>
       </div>
     );
  
