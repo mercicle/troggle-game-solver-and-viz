@@ -80,7 +80,6 @@ class Board extends React.Component {
   render() {
 
     const status = 'Unsolved';
-  
     return (
       <div className="boardContainer">
         <div className="status">{status}</div>
