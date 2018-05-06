@@ -81,11 +81,11 @@ class Board extends React.Component {
 
   solveAndDisplay(){
   	// test fetch and display below board
-  	const boggleString = this.state.squares.join('')
+  	var boggleString = this.state.squares.join('')
   	if(boggleString.length !== total_letters){
   		return
   	}
-  	const this_query = 'http://localhost:3001/solve/' + boggleString;
+  	var this_query = 'http://localhost:3001/solve/' + boggleString;
 	this.status_element = d3.select(ReactDOM.findDOMNode(this.refs.status))
 
 	fetch(this_query)
