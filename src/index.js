@@ -92,13 +92,11 @@ class Board extends React.Component {
 	.then(response => response.json())
 	.then(response_object => {
 
- 		var s = this.status_element.selectAll('li').data(response_object.words)
+		// remove previous items and provide new sorted list
+		this.status_element.selectAll('li').remove()
+ 		var s = this.status_element.selectAll('li').data(response_object.words.sort())
  		
  		s.enter().append('li').text(function(d){ return d })
- 		s.exit().remove();
-
- 		console.log('response_object.tree')
- 		console.log(response_object.tree)
  		plotTree(response_object.tree)
 	})
 
@@ -119,6 +117,7 @@ class Board extends React.Component {
     return (
       <div className="boardContainer">
         <br/>
+        <h1> Change Cubes: </h1>
         { /* Iteration through rows and append Square column elements 
              dynamically based on global parms */ 
         }
@@ -152,7 +151,7 @@ class Game extends React.Component {
       <div className="App-Container">
         <header className="App-header">
           <img src={board_pic} className="App-logo" alt="logo" />
-          <h1 className="App-title">RStudio Challenge</h1>
+          <div className="App-title">TRoggle: Visually analyze Boggle Solutions with Radial Tree View</div>
         </header>
 	      <div className="game">
 	        <div className="game-board">

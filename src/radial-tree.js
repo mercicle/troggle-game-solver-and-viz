@@ -2,30 +2,29 @@
 /* thanks to https://codepen.io/fernoftheandes/pen/pcoFz for example */
 
 import d3 from 'd3'
-//import root from './example-tree-data'
-
 var root = {};
+
 function plotTree(in_tree){
 
   console.log('inside plotTree')
    
-  //root =   Object.assign({ }, in_tree);
+  // deep copy
   root = JSON.parse(JSON.stringify(in_tree));
-  console.log(root)
+
   var diameter = 800;
 
   var margin = {top: 20, right: 120, bottom: 20, left: 120},
       width = diameter,
       height = diameter;
       
-  const edge_length_factor = 40;
+  const edge_length_factor = 80;
 
   var i = 0,
       duration = 350;
 
   var tree = d3.layout.tree()
       .size([360, diameter / 2 - 80])
-      .separation(function(a, b) { return (a.parent == b.parent ? 1 : 10) / a.depth; });
+      .separation(function(a, b) { return (a.parent == b.parent ? 4 : 10) / a.depth; });
 
   var diagonal = d3.svg.diagonal.radial()
       .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
@@ -61,7 +60,6 @@ function plotTree(in_tree){
     // Enter any new nodes at the parent's previous position.
     var nodeEnter = node.enter().append("g")
         .attr("class", "node")
-        //.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
         .on("click", click);
 
     nodeEnter.append("circle")
@@ -86,7 +84,8 @@ function plotTree(in_tree){
 
     nodeUpdate.select("text")
         .style("fill-opacity", 1)
-        .attr("transform", function(d) { return d.x < 180 ? "translate(0)" : "rotate(180)translate(-" + ( 60 )  + ")"; }); //d.label.length +
+        // these required modification for proper display of labels
+        .attr("transform", function(d) { return d.x < 180 ? "translate(0)" : "rotate(180) translate(-" + ((d.label.length+2)*d.depth + 24) + ")"; }); 
 
     // TODO: appropriate transform
     var nodeExit = node.exit().transition()

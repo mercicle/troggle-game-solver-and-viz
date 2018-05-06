@@ -33,7 +33,8 @@
 }
 
 .node text {
-  font: 10px sans-serif;
+  font: 11px ;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .link {
