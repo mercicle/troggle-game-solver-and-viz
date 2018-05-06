@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-import './App.css';
-import logo from './rstudio-logo.png';
+// import './App.css';
+import board_pic from './board-pic.png';
 import plotTree from './radial-tree';
 
 import d3 from 'd3';
@@ -82,24 +82,31 @@ class Board extends React.Component {
   solveAndDisplay(){
   	// test fetch and display below board
   	const boggleString = this.state.squares.join('')
+  	if(boggleString.length !== total_letters){
+  		return
+  	}
   	const this_query = 'http://localhost:3001/solve/' + boggleString;
 	this.status_element = d3.select(ReactDOM.findDOMNode(this.refs.status))
 
 	fetch(this_query)
 	.then(response => response.json())
-	.then(words => {
+	.then(response_object => {
 
- 		var s = this.status_element.selectAll('li').data(words)
+ 		var s = this.status_element.selectAll('li').data(response_object.words)
  		
  		s.enter().append('li').text(function(d){ return d })
  		s.exit().remove();
+
+ 		console.log('response_object.tree')
+ 		console.log(response_object.tree)
+ 		plotTree(response_object.tree)
 	})
 
   }
 
   componentDidMount(){
+  	console.log(this.state.squares.join(''))
   	this.solveAndDisplay()
-  	plotTree()
   }
 
   componentDidUpdate(){
@@ -129,9 +136,10 @@ class Board extends React.Component {
         	 
          }, this)}
         <br/>
+ 
+        <br/>
         <div className="status" ref = 'status'> </div>
-        <div id="radialTree"> 
-        </div>
+ 
       </div>
     );
  
@@ -143,16 +151,17 @@ class Game extends React.Component {
     return (
       <div className="App-Container">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={board_pic} className="App-logo" alt="logo" />
           <h1 className="App-title">RStudio Challenge</h1>
         </header>
 	      <div className="game">
 	        <div className="game-board">
 	          <Board />
 	        </div>
-	        <div className="game-info">
-	          <div>{/* status */}</div>
-	          <ol>{/* TODO */}</ol>
+	        <div className="radial-tree-layout">
+	           <div id="radialTree">
+
+	           </div>
 	        </div>
 	      </div>
       </div>

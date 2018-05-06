@@ -1,7 +1,64 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
+.App-logo {
+  height: 80px;
 }
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 40px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.App-intro {
+  font-size: large;
+}
+ 
+/* radial tidy tree css */
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.game-board{
+  float: left;
+  width: 600px;
+  height: 500px;
+  padding-right:5px;
+  padding-top:200px;
+
+}
+
+.radial-tree-layout{
+  float:left;
+  width: 600px;
+  height: 500px;
+  padding-left:5px;
+}
+
+/* board css */
 
 ol, ul {
   padding-left: 30px;
@@ -19,11 +76,12 @@ ol, ul {
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 1px solid #77ABD9;
   border-radius: 10px;
   float: left;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 40px;
+  font-family: 'Source Sans Pro', sans-serif;
+  /*font-weight: bold;*/
   line-height: 34px;
   margin-right: -1px;
   margin-top: -1px;
