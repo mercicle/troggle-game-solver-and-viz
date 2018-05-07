@@ -1,3 +1,6 @@
+
+// original from https://www.npmjs.com/package/matrix-paths-zolmeister
+
 var check = require('check-types');
 
 var verify = require('./grid').verify;

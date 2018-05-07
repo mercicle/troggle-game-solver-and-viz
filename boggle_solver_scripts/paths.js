@@ -1,3 +1,5 @@
+// original from https://www.npmjs.com/package/matrix-paths-zolmeister
+
 var verify = require('./grid').verify;
 var pathsFrom = require('./pathsFrom').pathsFrom;
 

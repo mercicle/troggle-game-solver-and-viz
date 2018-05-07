@@ -7,7 +7,8 @@
 var check = require('check-types');
 var verify = check.verify;
 var _ = require('lodash');
-var paths = require('matrix-paths-zolmeister').paths;
+var paths = require('./paths').paths;
+
 var dictionary = require('prefix-dictionary');
 
 var __ = require('underscore');
