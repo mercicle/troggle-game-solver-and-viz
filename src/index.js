@@ -85,7 +85,7 @@ class Board extends React.Component {
   	if(boggleString.length !== total_letters){
   		return
   	}
-  	var this_query = 'http://localhost:3001/solve/' + boggleString;
+  	var this_query = '/solve/' + boggleString;
 	this.status_element = d3.select(ReactDOM.findDOMNode(this.refs.status))
 
 	fetch(this_query)
