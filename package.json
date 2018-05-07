@@ -1,29 +1,32 @@
 {
-  "name": "rstudio-challenge",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:3001",
+  "name": "troggle",
+  "version": "1.0.0",
+  "description": "Single deploy for front and back-end",
+  "scripts": {
+    "start": "node server",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "dependencies": {
     "body-parser": "^1.18.2",
     "check-types": "^1.1.1",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "d3": "^3.5.17",
     "express": "^4.16.3",
     "express-validator": "^2.21.0",
     "lodash": "^3.10.1",
     "morgan": "^1.9.0",
     "prefix-dictionary": "0.0.2",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
     "underscore": "^1.9.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mercicle/rstudio-challenge-test-deploy.git"
+  },
+  "devDependencies": {}
 }
