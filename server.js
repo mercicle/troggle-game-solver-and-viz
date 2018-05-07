@@ -4,7 +4,17 @@ const cors = require('cors')
 
 var solver = require('./Solver');
 
+var port = 3001;
+
 app.use(cors());
+app.use(compression());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('port', port);
 
 app.get('/solve/:boggleString' , function(req, res, next){
 
@@ -19,4 +29,4 @@ app.get('/solve/:boggleString' , function(req, res, next){
 
 });  
 
-app.listen(3001, () => console.log('Example app listening on port 3001!'))
+app.listen(app.get('port'), () => console.log('Example app listening on port 3001!'))
