@@ -7,11 +7,11 @@ The Troggle app is made with React, Node and D3 and deployed to Heroku to automa
 
 The live app can be [found here on Heroku.](https://troggle-app.herokuapp.com/) and when you access you should see a random board on the left, the tree view on the right and a plain list of words found in bullets below the grid, like this:
 
-![Troggle App](./screenshots/troggle-example.png)
+![Troggle App](troggle-example.png)
 
 Enjoy!
 
-# Run locally
+# Build and run locally
 
 In the repo root and react-ui/ these need to be run for the server and front-end, respectively:
 
